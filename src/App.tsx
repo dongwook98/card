@@ -1,27 +1,34 @@
-import { css } from '@emotion/react';
-import styled from '@emotion/styled';
-import './App.css';
-
-const bold = css`
-  font-weight: bold;
-`;
-
-const containerStyles = css`
-  background-color: pink;
-  ${bold}
-`;
-
-const Button = styled.button`
-  width: 200px;
-  height: 100px;
-  ${bold}
-`;
+import Text from '@shared/Text';
+import Button from '@shared/Button';
 
 function App() {
   return (
     <>
-      <div css={containerStyles}>Home</div>
-      <Button>스타일 버튼</Button>
+      <Text typography='t1' color='blue'>
+        t1
+      </Text>
+      <Text typography='t2'>t2</Text>
+      <Text typography='t3'>t3</Text>
+      <Text typography='t4'>t4</Text>
+      <Text typography='t5'>t5</Text>
+
+      <div></div>
+      <Button color='succuss'>클릭해주세요</Button>
+      <Button color='error'>클릭해주세요</Button>
+      <Button color='primary'>클릭해주세요</Button>
+      <Button color='succuss' weak>
+        클릭해주세요
+      </Button>
+      <Button color='error' weak>
+        클릭해주세요
+      </Button>
+      <Button color='primary' weak>
+        클릭해주세요
+      </Button>
+      <Button full>클릭해주세요</Button>
+      <Button full disabled>
+        클릭해주세요
+      </Button>
     </>
   );
 }
