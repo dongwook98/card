@@ -65,6 +65,7 @@ export function AlertContextProvider({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAlertContext() {
   const values = useContext(Context);
 
