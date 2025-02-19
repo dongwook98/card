@@ -52,12 +52,12 @@ export default function CardList() {
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
+        style={{ overflow: 'hidden' }}
         loader={<>Loading...</>}
         next={loadMore}
-        height={600}
         endMessage={
           <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
+            <b>끝!</b>
           </p>
         }
         scrollThreshold={'100px'}
