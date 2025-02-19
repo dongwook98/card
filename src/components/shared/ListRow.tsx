@@ -21,7 +21,12 @@ export default function ListRow({
   as = 'li',
 }: ListRowProps) {
   return (
-    <Flex as={as} css={listRowContainerStyles} onClick={onClick} align='center'>
+    <Flex
+      as={as}
+      css={[listRowContainerStyles, onClick && { cursor: 'pointer' }]}
+      onClick={onClick}
+      align='center'
+    >
       <Flex css={listRowLeftStyles}>{left}</Flex>
       <Flex css={listRowContentsStyles}>{contents}</Flex>
       <Flex>{right}</Flex>
