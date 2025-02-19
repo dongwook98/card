@@ -1,10 +1,12 @@
 import { useCallback } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
 import { flatten } from 'lodash';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import ListRow from '@shared/ListRow';
+import Badge from '@shared/Badge';
 import { getCards } from '@/remote/card';
 import { Card } from '@/models/card';
 
@@ -30,6 +32,8 @@ export default function CardList() {
     },
   });
 
+  const navigate = useNavigate();
+
   const loadMore = useCallback(() => {
     if (hasNextPage === false || isFetching) {
       return;
@@ -50,9 +54,9 @@ export default function CardList() {
         style={{ overflow: 'hidden' }}
         dataLength={cards.length}
         hasMore={hasNextPage}
-        loader={<div style={{ height: '200px' }}>로딩..</div>}
+        loader={<>Loading...</>}
         next={loadMore}
-        scrollThreshold='200px'
+        scrollThreshold='100px'
       >
         <ul>
           {cards.map((card, index) => {
@@ -65,8 +69,11 @@ export default function CardList() {
                     subTitle={card.name}
                   />
                 }
-                right={card.payback != null ? <div>{card.payback}</div> : null}
+                right={
+                  card.payback != null ? <Badge label={card.payback} /> : null
+                }
                 withArrow
+                onClick={() => navigate(`/card/${card.id}`)}
               />
             );
           })}

@@ -6,6 +6,8 @@ import {
   startAfter,
   QueryDocumentSnapshot,
   DocumentData,
+  doc,
+  getDoc,
 } from 'firebase/firestore';
 import { store } from './firebase';
 
@@ -36,4 +38,13 @@ export async function getCards(
 
   // 데이터 가공후 반환
   return { items, lastVisible };
+}
+
+export async function getCard(id: string) {
+  const snapshot = await getDoc(doc(store, COLLECTIONS.CARD, id));
+
+  return {
+    id,
+    ...(snapshot.data() as Card),
+  };
 }

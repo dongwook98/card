@@ -9,9 +9,8 @@ export async function getAdBanners() {
     collection(store, COLLECTIONS.ADBANNER)
   );
 
-  // 데이터 가공후 반환
   return adBannerSnapshot.docs.map((doc) => ({
-    id: doc.id,
+    id: doc.id, // doc에 id 속성 추가
     ...(doc.data() as AdBanner),
   }));
 }
