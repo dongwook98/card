@@ -27,7 +27,6 @@ export default function CardList() {
     },
     initialPageParam: undefined,
     getNextPageParam: (snapshot) => {
-      console.log('🚀 ~ CardList ~ snapshot:', snapshot);
       return snapshot.lastVisible;
     },
   });
@@ -51,12 +50,17 @@ export default function CardList() {
   return (
     <div>
       <InfiniteScroll
-        style={{ overflow: 'hidden' }}
         dataLength={cards.length}
         hasMore={hasNextPage}
         loader={<>Loading...</>}
         next={loadMore}
-        scrollThreshold='100px'
+        height={600}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+        scrollThreshold={'100px'}
       >
         <ul>
           {cards.map((card, index) => {
