@@ -6,7 +6,7 @@ import { signOut } from 'firebase/auth';
 import Flex from './Flex';
 import Button from './Button';
 import { colors } from '@/styles/colorPalette';
-import useUser from '@hooks/useUser';
+import useUser from '@/hooks/auth/useUser';
 import { auth } from '@remote/firebase';
 
 export default function Navbar() {
