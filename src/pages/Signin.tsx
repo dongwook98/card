@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 
@@ -12,6 +12,8 @@ export default function SigninPage() {
   const { open } = useAlertContext();
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || '/'; // 원래 가려던 경로 확인
 
   const handleSubmit = useCallback(
     async (formValues: FormValues) => {
@@ -20,7 +22,7 @@ export default function SigninPage() {
       try {
         await signInWithEmailAndPassword(auth, email, password);
 
-        navigate('/');
+        navigate(from);
       } catch (err) {
         // firebase 의 에러
         if (err instanceof FirebaseError) {
@@ -45,7 +47,7 @@ export default function SigninPage() {
         });
       }
     },
-    [navigate, open]
+    [from, navigate, open]
   );
 
   return (
