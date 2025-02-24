@@ -6,7 +6,7 @@ import Terms from '@/components/apply/Terms';
 import { ApplyValues } from '@/models/apply';
 
 export default function ApplyPage() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   // Terms, BasicInfo, CardInfo 스텝들의 값들을 받아오는 함수
   const handleTermsChange = (terms: ApplyValues['terms']) => {
@@ -19,11 +19,17 @@ export default function ApplyPage() {
     console.log(infoValues);
   };
 
+  const handleCardInfoChange = (
+    cardInfoValues: Pick<ApplyValues, 'isMaster' | 'isRf' | 'isHipass'>
+  ) => {
+    console.log(cardInfoValues);
+  };
+
   return (
     <div>
       {step === 0 ? <Terms onNext={handleTermsChange} /> : null}
       {step === 1 ? <BasicInfo onNext={handleBasicInfoChange} /> : null}
-      {step === 2 ? <CardInfo /> : null}
+      {step === 2 ? <CardInfo onNext={handleCardInfoChange} /> : null}
     </div>
   );
 }
