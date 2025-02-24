@@ -29,7 +29,7 @@ export default function CardInfo({
   }, []);
 
   return (
-    <div>
+    <div style={{ padding: '24px' }}>
       <Button.Group title='해외결제'>
         <Button
           name='isMaster'
@@ -51,7 +51,7 @@ export default function CardInfo({
         </Button>
       </Button.Group>
 
-      <Spacing size={32} />
+      <Spacing size={12} />
 
       <Button.Group title='후불교통기능'>
         <Button
@@ -74,7 +74,7 @@ export default function CardInfo({
         </Button>
       </Button.Group>
 
-      <Spacing size={32} />
+      <Spacing size={12} />
 
       <Button.Group title='후불하이패스카드'>
         <Button
