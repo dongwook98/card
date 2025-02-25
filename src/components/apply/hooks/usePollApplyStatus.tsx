@@ -13,7 +13,7 @@ export default function usePollApplyStatus({
   onSuccess,
   onError,
 }: usePollApplyStatusProps) {
-  const { data, isSuccess, error } = useQuery({
+  const { data, isSuccess, isError } = useQuery({
     queryKey: ['applyStatus'],
     queryFn: () => getApplyStatus(),
     enabled: enabled,
@@ -26,10 +26,10 @@ export default function usePollApplyStatus({
       onSuccess();
     }
 
-    if (error) {
+    if (isError) {
       onError();
     }
-  }, [error, isSuccess, onError, onSuccess]);
+  }, [isError, isSuccess, onError, onSuccess]);
 
   return { data };
 }
